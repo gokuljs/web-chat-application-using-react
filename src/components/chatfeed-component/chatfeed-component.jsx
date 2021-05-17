@@ -27,8 +27,8 @@ const ChatFeed=(props)=>{
                     {
         
                         isMyMessage 
-                        ? <MyMessage />
-                        : <TheirMessage />                        
+                        ? <MyMessage message={message}/>
+                        : <TheirMessage message={message} lastMessage={message[LastMessageKey]}/>                        
                     }
 
                     </div>
@@ -43,13 +43,22 @@ const ChatFeed=(props)=>{
 
         })
     }
-    renderMessages();
+    // renderMessages();
+    if (!chat) return 'loading ....';
     return(
         <div className="chat-feed">
-            <div className="chat-title-container">
-        
-                <div className="chat-title">{chat?.title}  {/* make sures that chat exist before title is printed on it  */}</div>
-            </div>
+        <div className="chat-title-container">
+        <div className="chat-title">{chat?.title}  {/* make sures that chat exist before title is printed on it  */}</div>
+        <div className="chat-subtitle">
+            {chat.people.map((person)=> `${person.person.username}`)}
+        </div>
+        </div>
+        {renderMessages()}
+        <div style={{height:'100px'}}/>
+        {/* creating a form where user will able to send messages  */}
+        <div className="message-form-container">
+            <MessageForm {...props} chatId={activeChat}/>
+        </div>
         </div>
     );
 }
