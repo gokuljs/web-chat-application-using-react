@@ -12,13 +12,44 @@ const ChatFeed=(props)=>{
         console.log(keys)
         return keys.map((key,index)=>{
             const message=messages[key]; //returning message with this specific key 
+            // two this we have to know about 
+            // first is it the last message that is sent 
+            // and is the last message was mine or not 
+            const LastMessageKey =index === 0 ? null : keys[index-1]
+            const isMyMessage = userName === message.sender.userName;
+            // we all the information to create diffrent types of images
+            return(
+                <div key={`msg_${index}`} style={{width:'100%'}}>
+                
+                    <div className="message-block">
+                    {/* if is mymessage then we are rendering my message component */}
+                    {/* if it is their message then we are rendering theirmessage component */}
+                    {
+        
+                        isMyMessage 
+                        ? <MyMessage />
+                        : <TheirMessage />                        
+                    }
+
+                    </div>
+
+                    <div className='read-receipts' style={{marginRight: isMyMessage ? '18px' : '0px',marginLeft: isMyMessage ? 'opx' : '68px'}}>
+                    read-receipts
+                    </div>
+
+                </div>
+            );
+
 
         })
     }
     renderMessages();
     return(
-        <div>
-            chatfeed
+        <div className="chat-feed">
+            <div className="chat-title-container">
+        
+                <div className="chat-title">{chat?.title}  {/* make sures that chat exist before title is printed on it  */}</div>
+            </div>
         </div>
     );
 }
