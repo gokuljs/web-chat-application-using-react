@@ -1,6 +1,7 @@
 import React from 'react';
 
-const ChatFeed=()=>{
+const ChatFeed=(props)=>{
+    console.log(props)
     return(
         <div>
             chatfeed
