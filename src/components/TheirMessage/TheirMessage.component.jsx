@@ -1,7 +1,7 @@
 import React from 'react';
 // handle the message other prople sent 
 
-const TheirMessage=()=>{
+const TheirMessage=({lastMessage,message})=>{
     return(
         <div>
            Their message
