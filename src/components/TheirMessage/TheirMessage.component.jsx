@@ -20,13 +20,16 @@ const TheirMessage=({lastMessage,message})=>{
             <img src={message.attachment[0].file}
             alt="message-attachment"
             className="message-image"
-            styles={{float:'right'}}
+            styles={{marginLeft: isFirstMessageByUser ? '4px': '48px' }}
              />
             ):( 
-                <div
-               className="message-avatar"
-               style={{backgroundImage:`url(${message?.sender?.avatar})`}}
-            />
+                
+                <div className="message"
+                style={{float:'left',backgroundColor:'#CABCDC',marginLeft: isFirstMessageByUser ? '4px': '48px'}}
+                >
+                   {message.text}
+                </div>
+        
              )
     
            }
